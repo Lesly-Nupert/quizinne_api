@@ -59,7 +59,7 @@ const recipeController = {
         // Image par défaut sinon (TypeError: Cannot read properties of undefined (reading 'path')) quand l'utilisateur ne télécharge pas d'image. Les images ne sont pas obligatoires.
         image: req.file
           ? req.file.path
-          : "images/imgQuizineDefaut.png1709082437161.png",
+          : "images/imgQuizineDefaut.png1710100799588.png",
         category: req.body.category,
         time_cook_hours: req.body.time_cook_hours,
         time_cook_minutes: req.body.time_cook_minutes,
@@ -102,7 +102,7 @@ const recipeController = {
         // Image par défaut sinon (TypeError: Cannot read properties of undefined (reading 'path')) quand l'utilisateur ne télécharge pas d'image. Les images ne sont pas obligatoires.
         image: req.file
           ? req.file.path
-          : "images/imgQuizineDefaut.png1709082437161.png",
+          : "images/imgQuizineDefaut.png1710100799588.png",
         category: req.body.category,
         time_cook_hours: req.body.time_cook_hours,
         time_cook_minutes: req.body.time_cook_minutes,
