@@ -55,3 +55,4 @@ router.patch(
 router.delete("/user/delete/:userId", jwt, authController.deleteOneUser);
 
 module.exports = router;
+

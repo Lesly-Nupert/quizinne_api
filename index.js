@@ -13,7 +13,11 @@ const cors = require('cors');
 const app = express();
 
 // Activation de CORS
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200 
+};
+app.use(cors(corsOptions));
 
 // Distribue les fichiers statiques 
 // (ici les images des recttes dans les src des balises <a> dans svelte)
