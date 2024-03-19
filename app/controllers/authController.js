@@ -1,7 +1,7 @@
 const dataMapper = require("../database/datamapper");
 const emailValidator = require("email-validator");
 // Bibliothque qui hache les mots de passe
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const salt = 10;
 // Authentification des utilisateurs via JWT
 const jwt = require("jsonwebtoken");
