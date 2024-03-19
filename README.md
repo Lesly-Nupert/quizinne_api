@@ -1,6 +1,6 @@
 # Projet Quizine (back)
 ***
-L'API Quizzine a été développée pour le site web Quizzine, une plateforme d'échange de recettes, accessible à l'adresse : https://
+L'API Quizzine a été développée pour le site web Quizzine, une plateforme d'échange de recettes, accessible à l'adresse : [https://quizinne.netlify.app/#/]
 
 ## Technologies et Bibliothèques utilisées
 ***
