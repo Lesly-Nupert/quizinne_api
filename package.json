@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "db": "psql -U quizine -d quizine -f app/data/create.sql"
   },
   "keywords": [],
   "author": "",
