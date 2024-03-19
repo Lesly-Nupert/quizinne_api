@@ -7,17 +7,21 @@ const express = require('express');
 
 // Middlewarre CORS :
 // Cross-Origin Resource Sharing rend l'API accessible en toute sécurité à différents clients (domaine, protocole ou port) différente de la sienne via des en-têtes http (cela se fait automatiquement sous le capot)
+
 const cors = require('cors');
 
 // Initialisation de Express
 const app = express();
 
 // Activation de CORS
-const corsOptions = {
-    origin: 'http://localhost:5173',
-    optionsSuccessStatus: 200 
-};
-app.use(cors(corsOptions));
+
+app.use(cors());
+
+// const corsOptions = {
+//     origin: 'http://localhost:5173',
+//     optionsSuccessStatus: 200 
+// };
+// app.use(cors(corsOptions));
 
 // LOCALHOST:3000 uniquement pour le développement
 // Distribue les fichiers statiques dans le dossier 'images' (middleware)
