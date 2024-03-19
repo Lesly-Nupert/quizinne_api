@@ -15,10 +15,10 @@ const app = express();
 
 // Activation de CORS
 
-app.use(cors());
+// app.use(cors());
 
 // const corsOptions = {
-//     origin: 'http://localhost:5173',
+//     origin: 'https://quizinne.netlify.app',
 //     optionsSuccessStatus: 200 
 // };
 // app.use(cors(corsOptions));
@@ -40,7 +40,7 @@ app.use(router);
 
 // Port sur lequel l'appli va écouter + Url de base 
 app.set('PORT', process.env.PORT || 3000);
-app.set('URL', process.env.BASE_URL || 'http://localhost');
+app.set('URL', process.env.BASE_URL || 'https://quizinneapi.up.railway.app/');
 
 app.listen(app.get('PORT'), () => {
     console.log(`Listening on ${app.get('URL')}:${app.get('PORT')}`);
