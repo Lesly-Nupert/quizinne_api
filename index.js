@@ -2,26 +2,24 @@
 // A mettre tout en haut du point d'entrée de l'application pour être sûr que les variables sont bien accessibles.
 require('dotenv').config();
 
-// Importe le framework Express
-const express = require('express');
-
 // Middlewarre CORS :
 // Cross-Origin Resource Sharing rend l'API accessible en toute sécurité à différents clients (domaine, protocole ou port) différente de la sienne via des en-têtes http (cela se fait automatiquement sous le capot)
-
 const cors = require('cors');
+
+// Importe le framework Express
+const express = require('express');
 
 // Initialisation de Express
 const app = express();
 
 // Activation de CORS
+app.use(cors());
 
-// app.use(cors());
-
-// const corsOptions = {
-//     origin: 'https://quizinne.netlify.app',
-//     optionsSuccessStatus: 200 
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+    origin: 'https://quizinne.netlify.app',
+    optionsSuccessStatus: 200 
+};
+app.use(cors(corsOptions));
 
 // LOCALHOST:3000 uniquement pour le développement
 // Distribue les fichiers statiques dans le dossier 'images' (middleware)
