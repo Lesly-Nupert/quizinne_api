@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "db": "psql $DATABASE_URL -f app/data/create.sql"
+    "create_db": "psql $DATABASE_URL -f app/data/create.sql"
   },
   "keywords": [],
   "author": "",
