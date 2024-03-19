@@ -48,8 +48,6 @@ COMMIT;
 
 
 
-
-
 -- BEGIN; 
 
 -- DROP TABLE IF EXISTS recipe, member, comment, likes CASCADE;
