@@ -1,4 +1,4 @@
-// CONNEXION PostgreSQL via pg
+// CONNEXION PostgreSQL via PG
 const pg = require('pg');
 // const client = new pg.Client(process.env.DATABASE_URL_LOCAL);
 const client = new pg.Client(process.env.DATABASE_URL);
