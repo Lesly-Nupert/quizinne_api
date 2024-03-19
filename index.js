@@ -19,9 +19,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Distribue les fichiers statiques 
-// (ici les images des recttes dans les src des balises <a> dans svelte)
-app.use('/images', express.static('./images'));
+// LOCALHOST:3000 uniquement pour le développement
+// Distribue les fichiers statiques dans le dossier 'images' (middleware)
+// app.use('/images', express.static('./images'));
 
 // Middleware qui analyse les données du corps de la requête (Propriété: req.body)
 // Dans insomnia et Fetch mettre le Content-Type à application x-www-form-urlencoded

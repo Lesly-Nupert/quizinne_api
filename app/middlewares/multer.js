@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'quizinne',
     format: async (req, file) => 'jpg', 
-    public_id: (req, file) => Date.now() 
+    public_id: (req, file) => Date.now() + '-' + file.originalname,
   },
 });
 
