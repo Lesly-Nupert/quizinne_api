@@ -1,4 +1,6 @@
 const dataMapper = require("../database/datamapper");
+// Sanitize les données pour contrer attaque XSS
+const sanitizeHtml = require('sanitize-html');
 
 const recipeController = {
   // Toutes les recettes
@@ -55,18 +57,18 @@ const recipeController = {
   addRecipePost: async (req, res) => {
     try {
       const recipeData = {
-        title: req.body.title,
-        // Image par défaut sinon (TypeError: Cannot read properties of undefined (reading 'path')) quand l'utilisateur ne télécharge pas d'image. Les images ne sont pas obligatoires.
+        title: sanitizeHtml(req.body.title),
+        // Image par défaut sinon (TypeError: Cannot read properties of undefined (reading 'path')) quand l'utilisateur ne télécharge pas d'image. Les images ne sont pas obligatoires dans le formulaire.
         image: req.file
           ? req.file.path
           : "https://res.cloudinary.com/dryps5cyq/image/upload/v1710802494/quizinne/1710802493879.jpg",
-        category: req.body.category,
-        time_cook_hours: req.body.time_cook_hours,
-        time_cook_minutes: req.body.time_cook_minutes,
-        difficulty: req.body.difficulty,
-        nb_persons: req.body.nb_persons,
-        ingredients: req.body.ingredients,
-        steps: req.body.steps,
+        category: sanitizeHtml(req.body.category),
+        time_cook_hours: sanitizeHtml(req.body.time_cook_hours),
+        time_cook_minutes: sanitizeHtml(req.body.time_cook_minutes),
+        difficulty: sanitizeHtml(req.body.difficulty),
+        nb_persons: sanitizeHtml(req.body.nb_persons),
+        ingredients: sanitizeHtml(req.body.ingredients),
+        steps: sanitizeHtml(req.body.steps),
         id_member: req.user.userId,
       };
       await dataMapper.addRecipe(recipeData);
@@ -98,19 +100,18 @@ const recipeController = {
     try {
       const id = req.params.id;
       const updateData = {
-        title: req.body.title,
-        // Image par défaut sinon (TypeError: Cannot read properties of undefined (reading 'path')) quand l'utilisateur ne télécharge pas d'image. Les images ne sont pas obligatoires.
+        title: sanitizeHtml(req.body.title),
         image: req.file
           ? req.file.path
-          : "images/imgQuizineDefaut.png1710100799588.png",
-        category: req.body.category,
-        time_cook_hours: req.body.time_cook_hours,
-        time_cook_minutes: req.body.time_cook_minutes,
-        difficulty: req.body.difficulty,
-        nb_persons: req.body.nb_persons,
-        ingredients: req.body.ingredients,
-        steps: req.body.steps,
-        id_member: req.user.userId,
+          : "https://res.cloudinary.com/dryps5cyq/image/upload/v1710802494/quizinne/1710802493879.jpg",
+        category: sanitizeHtml(req.body.category),
+        time_cook_hours: sanitizeHtml(req.body.time_cook_hours),
+        time_cook_minutes: sanitizeHtml(req.body.time_cook_minutes),
+        difficulty: sanitizeHtml(req.body.difficulty),
+        nb_persons: sanitizeHtml(req.body.nb_persons),
+        ingredients: sanitizeHtml(req.body.ingredients),
+        steps: sanitizeHtml(req.body.steps),
+        id_member: req.user.userId
       };
 
       await dataMapper.updateRecipe(id, updateData);
@@ -137,7 +138,7 @@ const recipeController = {
   addCommentPost: async (req, res) => {
     try {
       const data = {
-        content: req.body.content,
+        content: sanitizeHtml(req.body.content),
         id_member: req.user.userId,
         id_recipe: req.params.id,
       };

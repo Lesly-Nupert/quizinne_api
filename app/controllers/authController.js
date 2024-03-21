@@ -5,12 +5,17 @@ const bcrypt = require("bcryptjs");
 const salt = 10;
 // Authentification des utilisateurs via JWT
 const jwt = require("jsonwebtoken");
+// Sanitize les données pour contrer attaque XSS
+const sanitizeHtml = require('sanitize-html');
 
 const authController = {
   // INSCRIPTION
   async postSignup(req, res) {
     try {
-      const { pseudo, email, password } = req.body;
+      const pseudo = sanitizeHtml(req.body.pseudo);
+      const email = sanitizeHtml(req.body.email);
+      const password = req.body.password;
+      // const { pseudo, email, password } = req.body;
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,12}$/;
 
       if (!emailValidator.validate(email)) {
@@ -49,7 +54,9 @@ const authController = {
   // CONNEXION
   async postLogin(req, res) {
     try {
-      const { email, password } = req.body;
+      const email = sanitizeHtml(req.body.email);
+      const password = req.body.password;
+      // const { email, password } = req.body;
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,12}$/;
 
       if (!emailValidator.validate(email)) {
@@ -117,9 +124,12 @@ const authController = {
   updateOneUser: async (req, res) => {
     try {
       const userId = req.params.userId;
-      const updatedData = req.body;
-
-      await dataMapper.updateUser(userId, updatedData);
+      const updateData = {
+        pseudo: sanitizeHtml (req.body.pseudo),
+        email: sanitizeHtml (req.body.email),
+      };
+      
+      await dataMapper.updateUser(userId, updateData);
       res
         .status(200)
         .json({ message: "Compte utilisateur mis à jour avec succès" });
