@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS "comment" (
 );
 
 CREATE TABLE IF NOT EXISTS "like" (
-  "id_love" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  "id_like" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "id_member" integer NOT NULL REFERENCES "member"("id_member") ON DELETE CASCADE,
   "id_recipe" integer NOT NULL REFERENCES "recipe"("id_recipe") ON DELETE CASCADE,
   "created_at" timestamptz NOT NULL DEFAULT now(),
@@ -44,8 +44,6 @@ CREATE TABLE IF NOT EXISTS "like" (
 );
 
 COMMIT; 
-
-
 
 
 -- BEGIN; 
