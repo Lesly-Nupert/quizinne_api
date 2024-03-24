@@ -164,7 +164,7 @@ const dataMapper = {
   async addLike(data) {
     const { id_member, id_recipe } = data;
     const query = {
-      text: "INSERT INTO likes (id_member, id_recipe) VALUES ($1, $2)",
+      text: 'INSERT INTO "like" (id_member, id_recipe) VALUES ($1, $2)',
       values: [id_member, id_recipe],
     };
     await client.query(query);
@@ -173,7 +173,7 @@ const dataMapper = {
   // Compte le nombre de "J'aime" par recette
   async getLikesByRecipe(id_recipe) {
     const query = {
-      text: "SELECT COUNT (id_recipe) FROM likes WHERE id_recipe = $1",
+      text: 'SELECT COUNT (id_recipe) FROM "like" WHERE id_recipe = $1',
       values: [id_recipe],
     };
     const result = await client.query(query);

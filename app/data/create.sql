@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "member" (
   "email" varchar(100) NOT NULL UNIQUE,
   "password" varchar(255) NOT NULL,
   "created_at" timestamptz NOT NULL DEFAULT now(),
-  "updated_at" timestamptz NOT NULL DEFAULT now()
+  "updated_at" timestamptz DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS "recipe" (
@@ -20,24 +20,24 @@ CREATE TABLE IF NOT EXISTS "recipe" (
   "nb_persons" smallint NOT NULL,
   "ingredients" text NOT NULL,
   "steps" text NOT NULL,
-  "id_member" integer NOT NULL REFERENCES member("id_member") ON DELETE CASCADE,
+  "id_member" integer NOT NULL REFERENCES "member"("id_member") ON DELETE CASCADE,
   "created_at" timestamptz NOT NULL DEFAULT now(),
-  "updated_at" timestamptz NOT NULL DEFAULT now()
+  "updated_at" timestamptz DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS "comment" (
   "id_comment" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   "content" varchar(255) NOT NULL,
-  "id_member" integer NOT NULL REFERENCES member("id_member") ON DELETE CASCADE,
-  "id_recipe" integer NOT NULL REFERENCES recipe("id_recipe") ON DELETE CASCADE,
+  "id_member" integer NOT NULL REFERENCES "member"("id_member") ON DELETE CASCADE,
+  "id_recipe" integer NOT NULL REFERENCES "recipe"("id_recipe") ON DELETE CASCADE,
   "created_at" timestamptz NOT NULL DEFAULT now(),
-  "updated_at" timestamptz NOT NULL DEFAULT now()
+  "updated_at" timestamptz DEFAULT now()
 );
 
-CREATE TABLE IF NOT EXISTS "likes" (
-  "id_likes" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  "id_member" integer NOT NULL REFERENCES member("id_member")ON DELETE CASCADE,
-  "id_recipe" integer NOT NULL REFERENCES recipe("id_recipe") ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS "like" (
+  "id_love" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  "id_member" integer NOT NULL REFERENCES "member"("id_member") ON DELETE CASCADE,
+  "id_recipe" integer NOT NULL REFERENCES "recipe"("id_recipe") ON DELETE CASCADE,
   "created_at" timestamptz NOT NULL DEFAULT now(),
   -- un membre peut liker une seule fois une recette, pas de doublon dans la bdd avec UNIQUE
   UNIQUE ("id_member", "id_recipe")

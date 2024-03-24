@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 // Middlewarre CORS :
-// Cross-Origin Resource Sharing rend l'API accessible en toute sécurité à différents clients (domaine, protocole ou port) différente de la sienne via des en-têtes http (cela se fait automatiquement sous le capot)
+// Cross-Origin Resource Sharing rend l'API accessible en toute sécurité à différents clients (domaine, protocole ou port) 
 const cors = require('cors');
 
 // Importe le framework Express

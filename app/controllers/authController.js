@@ -15,7 +15,6 @@ const authController = {
       const pseudo = sanitizeHtml(req.body.pseudo);
       const email = sanitizeHtml(req.body.email);
       const password = req.body.password;
-      // const { pseudo, email, password } = req.body;
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,12}$/;
 
       if (!emailValidator.validate(email)) {
@@ -56,7 +55,6 @@ const authController = {
     try {
       const email = sanitizeHtml(req.body.email);
       const password = req.body.password;
-      // const { email, password } = req.body;
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,12}$/;
 
       if (!emailValidator.validate(email)) {
