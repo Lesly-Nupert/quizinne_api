@@ -12,9 +12,7 @@ const express = require('express');
 // Initialisation de Express
 const app = express();
 
-// Activation de CORS
-app.use(cors());
-
+// Activation de CORS pour l'URL de production
 const corsOptions = {
     origin: 'https://quizinne.netlify.app',
     optionsSuccessStatus: 200 

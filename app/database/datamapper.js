@@ -1,8 +1,6 @@
 // *LE DATAMAPPER INTERROGE LA BASE DE DONNÉES
 const client = require("./client");
 
-// *REQUÊTES SÉCURISÉES AVEC DES PLACEHOLDERS $ (PROTÈGE DES INJECTIONS SQL)
-
 // Récupère toutes les recettes
 const dataMapper = {
   async getAllRecipes() {
@@ -10,6 +8,9 @@ const dataMapper = {
     const result = await client.query(query);
     return result.rows;
   },
+
+  // *REQUÊTES SÉCURISÉES AVEC DES PLACEHOLDERS $ (PROTÈGE DES INJECTIONS SQL)
+
 
   // Récupère les détails d'une recette + le pseudo de son créateur
   async getOneRecipe(id) {
