@@ -12,10 +12,10 @@ const dataMapper = {
   },
 
   // Récupère les détails d'une recette + le pseudo de son créateur
-  async getOneRecipe(id_recipe) {
+  async getOneRecipe(id) {
     const query = {
       text: "SELECT recipe.*, member.pseudo FROM recipe JOIN member ON recipe.id_member = member.id_member WHERE recipe.id_recipe = $1",
-      values: [id_recipe],
+      values: [id],
     };
     const result = await client.query(query);
     return result.rows[0];
@@ -39,7 +39,8 @@ const dataMapper = {
   },
 
   // Création du membre
-  async createUser(pseudo, email, password) {
+  async createUser(data) {
+    const { pseudo, email, password } = data;
     const query = {
       text: "INSERT INTO member (pseudo, email, password) VALUES ($1, $2, $3)",
       values: [pseudo, email, password],
@@ -58,17 +59,19 @@ const dataMapper = {
   },
 
   // Ajoute une recette
-  async addRecipe(
-    title,
-    image,
-    category,
-    time_cook_hours,
-    time_cook_minutes,
-    difficulty,
-    nb_persons,
-    ingredients,
-    steps,
-    id_member) {
+  async addRecipe(data) {
+    const {
+      title,
+      image,
+      category,
+      time_cook_hours,
+      time_cook_minutes,
+      difficulty,
+      nb_persons,
+      ingredients,
+      steps,
+      id_member,
+    } = data;
     const query = {
       text: "INSERT INTO recipe (title, image, category, time_cook_hours, time_cook_minutes, difficulty, nb_persons, ingredients, steps, id_member) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
       values: [
@@ -88,24 +91,27 @@ const dataMapper = {
   },
 
   // Supprime une recette
-  async deleteRecipe(id_recipe) {
+  async deleteRecipe(id) {
     const query = {
       text: "DELETE FROM recipe WHERE id_recipe = $1",
-      values: [id_recipe],
+      values: [id],
     };
     await client.query(query);
   },
 
   // Met à jour une recette
-  async updateRecipe(id, title,
-    image,
-    category,
-    time_cook_hours,
-    time_cook_minutes,
-    difficulty,
-    nb_persons,
-    ingredients,
-    steps) {
+  async updateRecipe(id, updateData) {
+    const {
+      title,
+      image,
+      category,
+      time_cook_hours,
+      time_cook_minutes,
+      difficulty,
+      nb_persons,
+      ingredients,
+      steps,
+    } = updateData;
     const query = {
       text: `UPDATE recipe SET title = $1, image = $2, category = $3, time_cook_hours= $4, time_cook_minutes= $5, difficulty = $6, nb_persons = $7, ingredients = $8, steps = $9 WHERE id_recipe = $10`,
       values: [
@@ -135,7 +141,8 @@ const dataMapper = {
   },
 
   // Ajoute un commentaire
-  async addComment(content, id_member, id_recipe) {
+  async addComment(data) {
+    const { content, id_member, id_recipe } = data;
     const query = {
       text: "INSERT INTO comment (content, id_member, id_recipe) VALUES ($1, $2, $3)",
       values: [content, id_member, id_recipe],
@@ -154,7 +161,8 @@ const dataMapper = {
   },
 
   // Ajoute un "J'aime"
-  async addLike(id_member, id_recipe ) {
+  async addLike(data) {
+    const { id_member, id_recipe } = data;
     const query = {
       text: 'INSERT INTO "like" (id_member, id_recipe) VALUES ($1, $2)',
       values: [id_member, id_recipe],
@@ -203,7 +211,8 @@ const dataMapper = {
   },
 
   // Met à jour le pseudo et/ou le mail
-  async updateUser(pseudo, email, userId) {
+  async updateUser(userId, updateData) {
+    const { pseudo, email } = updateData;
     const query = {
       text: `UPDATE member SET pseudo = $1, email = $2 WHERE id_member = $3`,
       values: [pseudo, email, userId],
