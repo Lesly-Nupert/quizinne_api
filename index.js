@@ -9,8 +9,14 @@ const cors = require('cors');
 // Importe le framework Express
 const express = require('express');
 
+//Importe le middleware Helmet 
+const helmet = require('helmet');
+
 // Initialisation de Express
 const app = express();
+
+// Acitvation de Helmet
+app.use(helmet());
 
 // Activation de CORS pour l'URL de production
 const corsOptions = {
