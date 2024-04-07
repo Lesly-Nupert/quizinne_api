@@ -169,7 +169,6 @@ const recipeController = {
         id_member: req.user.userId,
         id_recipe: req.params.id,
       };
-      console.log(data);
       await dataMapper.addLike(data);
       res.status(201).json({ message: "Like ajouté avec succès", data });
     } catch (error) {

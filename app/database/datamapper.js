@@ -14,7 +14,7 @@ const dataMapper = {
   // Récupère les détails d'une recette + le pseudo de son créateur
   async getOneRecipe(id) {
     const query = {
-      text: "SELECT recipe.*, member.pseudo FROM recipe JOIN member ON recipe.id_member = member.id_member WHERE recipe.id_recipe = $1",
+      text: "SELECT recipe.*, member.* FROM recipe JOIN member ON recipe.id_member = member.id_member  WHERE recipe.id_recipe = $1",
       values: [id],
     };
     const result = await client.query(query);
