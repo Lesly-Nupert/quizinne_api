@@ -151,7 +151,7 @@ async getOneRecipe(id) {
     await client.query(query);
   },
 
-  / Récupère les commentaires par recette
+  // Récupère les commentaires par recette
   async getCommentsByRecipe(id_recipe) {
     const query = {
       text: "SELECT comment.*,member.pseudo FROM comment JOIN member ON comment.id_member = member.id_member WHERE id_recipe = $1",
