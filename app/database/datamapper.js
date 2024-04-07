@@ -12,14 +12,15 @@ const dataMapper = {
   },
 
   // Récupère les détails d'une recette + le pseudo de son créateur
-  async getOneRecipe(id) {
-    const query = {
-      text: "SELECT recipe.*, member.* FROM recipe JOIN member ON recipe.id_member = member.id_member  WHERE recipe.id_recipe = $1",
-      values: [id],
-    };
-    const result = await client.query(query);
-    return result.rows[0];
-  },
+async getOneRecipe(id) {
+  const query = {
+    text: "SELECT recipe.*, member.pseudo FROM recipe JOIN member ON recipe.id_member = member.id_member WHERE recipe.id_recipe = $1",
+    values: [id],
+  };
+  const result = await client.query(query);
+  return result.rows[0];
+},
+
 
   // Récupère les recettes par catégorie
   async getRecipesByCategory(category) {
@@ -150,10 +151,10 @@ const dataMapper = {
     await client.query(query);
   },
 
-  // Récupère les commentaires par recette
+  / Récupère les commentaires par recette
   async getCommentsByRecipe(id_recipe) {
     const query = {
-      text: "SELECT comment.*, member.* FROM comment JOIN member ON comment.id_member = member.id_member WHERE id_recipe = $1",
+      text: "SELECT comment.*,member.pseudo FROM comment JOIN member ON comment.id_member = member.id_member WHERE id_recipe = $1",
       values: [id_recipe],
     };
     const result = await client.query(query);
