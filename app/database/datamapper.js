@@ -153,7 +153,7 @@ const dataMapper = {
   // Récupère les commentaires par recette
   async getCommentsByRecipe(id_recipe) {
     const query = {
-      text: "SELECT comment.*,member.pseudo FROM comment JOIN member ON comment.id_member = member.id_member WHERE id_recipe = $1",
+      text: "SELECT comment.*, member.* FROM comment JOIN member ON comment.id_member = member.id_member WHERE id_recipe = $1",
       values: [id_recipe],
     };
     const result = await client.query(query);
